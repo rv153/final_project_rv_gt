@@ -1,0 +1,40 @@
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(shiny)
+library(plotly)
+
+df <- read.csv("UnifiedDataset.csv")
+
+ui <- fluidPage(
+titlePanel("Drug Abuse Among College Students"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("age", "Select Age Group:", choices = unique(drug_abuse_data$Age)),
+      selectInput("gender", "Select Gender:", choices = unique(drug_abuse_data$Gender))
+    ),
+    mainPanel(
+      plotOutput("drug_plot"),
+      plotOutput("other_plots")
+    )
+  )
+)
+server <- function(input, output) {
+  output$drug_plot <- renderPlot({
+    filtered_data <- subset(drug_abuse_data, 
+                            Age == input$age & Gender == input$gender)
+    
+    ggplot(filtered_data, aes(x = Deaths, y = Drug_Use_Percentage)) +
+      geom_point() +
+      labs(x = "Deaths", y = "Drug Use Percentage")
+        })
+
+         output$other_plots <- renderPlot({
+    filtered_data <- subset(drug_abuse_data, 
+                            Age == input$age & Gender == input$gender)
+                            })
+}
+
+shinyApp(ui = ui, server = server)
+
+
