@@ -10,8 +10,8 @@ ui <- fluidPage(
 titlePanel("Drug Abuse Among College Students"),
   sidebarLayout(
     sidebarPanel(
-      selectInput("age", "Select Age Group:", choices = unique(drug_abuse_data$Age)),
-      selectInput("gender", "Select Gender:", choices = unique(drug_abuse_data$Gender))
+      selectInput("age", "Select Age Group:", choices = unique(UnifiedDataset$Age)),
+      selectInput("gender", "Select Gender:", choices = unique(UnifiedDataset$Gender))
     ),
     mainPanel(
       plotOutput("drug_plot"),
@@ -21,7 +21,7 @@ titlePanel("Drug Abuse Among College Students"),
 )
 server <- function(input, output) {
   output$drug_plot <- renderPlot({
-    filtered_data <- subset(drug_abuse_data, 
+    filtered_data <- subset(UnifiedDataset, 
                             Age == input$age & Gender == input$gender)
     
     ggplot(filtered_data, aes(x = Deaths, y = Drug_Use_Percentage)) +
@@ -30,7 +30,7 @@ server <- function(input, output) {
         })
 
          output$other_plots <- renderPlot({
-    filtered_data <- subset(drug_abuse_data, 
+    filtered_data <- subset(UnifiedDataset, 
                             Age == input$age & Gender == input$gender)
                             })
 }
