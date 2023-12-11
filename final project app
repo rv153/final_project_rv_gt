@@ -35,6 +35,8 @@ page_two <- tabPanel(
   sidebarLayout(
     sidebarPanel(plotlyOutput(outputId = "barplot")),
     mainPanel(
+plotlyOutput(outputId = "female_plot"),  # First plot
+      plotlyOutput(outputId = "male_plot")  # Second plot
       h3("Drug Abuse by Age & Gender"),
       p("Certain age groups and genders exhibit varying susceptibilities to drug abuse, highlighting the importance of understanding these disparities."),
       
@@ -59,7 +61,7 @@ page_three <- tabPanel(
   "Impact on Drug Types", 
   titlePanel("Impact on Drug Types"), 
   sidebarLayout(
-    sidebarPanel(plotlyOutput(outputId = "lineplot")),
+    sidebarPanel(plotlyOutput(outputId = "drug_type_plot")),
     mainPanel(
       h3("Shift in Drug Abuse Patterns by Types"),
       p("There has been a notable shift in drug abuse patterns, particularly concerning various drug types among college students."),
@@ -123,9 +125,7 @@ ui <- navbarPage(
 )
 
 server <- function(input, output, session) {
- # Define the server function
-server <- function(input, output, session) {
-  output$gender_plot <- renderPlot({
+  output$female_plot <- renderPlot({
     # Your plot code for gender distribution
     ggplot(drug_abuse_data, aes(x = Age_Group, y = Female_Percentage)) +
       geom_bar(stat = "identity", fill = "skyblue", width = 0.5) +
@@ -158,7 +158,4 @@ server <- function(input, output, session) {
 }
 
 # Run the app
-shinyApp(ui, server)
-}
-
 shinyApp(ui, server)
