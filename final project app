@@ -123,7 +123,42 @@ ui <- navbarPage(
 )
 
 server <- function(input, output, session) {
-  # Your plot rendering functions using the drug abuse data would go here
+ # Define the server function
+server <- function(input, output, session) {
+  output$gender_plot <- renderPlot({
+    # Your plot code for gender distribution
+    ggplot(drug_abuse_data, aes(x = Age_Group, y = Female_Percentage)) +
+      geom_bar(stat = "identity", fill = "skyblue", width = 0.5) +
+      labs(title = "Percentage of Females Involved in Drug Abuse by Age",
+           x = "Age Group",
+           y = "Percentage of Females") +
+      theme_minimal()
+  })
+
+  # Plot for male percentage involvement in drug abuse by age
+  output$male_plot <- renderPlot({
+    ggplot(drug_abuse_data, aes(x = Age_Group, y = Male_Percentage)) +
+      geom_bar(stat = "identity", fill = "lightgreen", width = 0.5) +
+      labs(title = "Percentage of Males Involved in Drug Abuse by Age",
+           x = "Age Group",
+           y = "Percentage of Males") +
+      theme_minimal()
+  })
+
+  # Plot for student participation in different drug types
+  output$drug_type_plot <- renderPlot({
+    ggplot(drug_data, aes(x = Drug_Type, y = Student_Participation)) +
+      geom_bar(stat = "identity", fill = "cornflowerblue", width = 0.5) +
+      labs(title = "Student Participation Rates in Different Drug Types",
+           x = "Drug Types",
+           y = "Student Participation (%)") +
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  })
+}
+
+# Run the app
+shinyApp(ui, server)
 }
 
 shinyApp(ui, server)
