@@ -1,0 +1,126 @@
+library(dplyr)
+library(ggplot2)
+library(shiny)
+library(plotly)
+
+# Assuming you have a CSV file named "drug_data.csv" containing relevant drug abuse data
+
+df <- read.csv("UnifiedData.csv")
+
+# Define the first page content
+page_one <- tabPanel(
+  "About", 
+  titlePanel("About"), 
+  
+  h3("Understanding Drug Abuse Among College Students"),
+  
+  p("Drug abuse among college students is a pressing concern, given the numerous factors that contribute to its prevalence. 
+    Academic pressure, social influences, and newfound independence often intersect, leading some students to engage in substance abuse."),
+  
+  br(),
+  
+  p("Research indicates a rising trend in drug abuse, but studies tracking substance use from college into later adulthood are scarce. 
+    The Monitoring the Future (MTF) program provides valuable insights by analyzing substance use across different life stages, 
+    revealing long-term effects and connections between substance use and various outcomes like substance use disorders, health issues, 
+    and social functioning."),
+  
+  br(),
+  
+  p("Throughout these pages, we will explore the causes, effects, and implications of this increasing trend in drug abuse among college students.")
+)
+
+# Define content for the second page
+page_two <- tabPanel(
+  "by Demographics", 
+  titlePanel("by Demographics"), 
+  sidebarLayout(
+    sidebarPanel(plotlyOutput(outputId = "barplot")),
+    mainPanel(
+      h3("Drug Abuse by Demographics"),
+      p("Certain demographic groups face higher susceptibility to drug abuse. Understanding these disparities is crucial."),
+      
+      br(),
+      
+      p("The bar plot on the left illustrates drug abuse rates among different ethnicities. For instance, 
+        we observe higher rates among certain groups like Black/African American and American Indian (at 38% and 35%, respectively), 
+        compared to lower rates among Asian American and White students (at 20% and 25%, respectively)."),
+      
+      br(),
+      
+      p("These disparities could stem from various socio-economic factors, emphasizing the need for targeted interventions to address 
+        drug abuse among specific communities.")
+    )
+  )
+)
+
+# Define content for the third page
+page_three <- tabPanel(
+  "After COVID-19", 
+  titlePanel("After COVID-19"), 
+  sidebarLayout(
+    sidebarPanel(plotlyOutput(outputId = "lineplot")),
+    mainPanel(
+      h3("Impact of COVID-19 on Drug Abuse"),
+      p("The COVID-19 pandemic has significantly affected drug abuse trends among college students."),
+      
+      br(),
+      
+      p("An analysis spanning from 2019 to 2021 shows a notable increase in drug abuse rates among college-age individuals, 
+        tripling from 15% to 45%. This rise is substantially higher compared to other age groups."),
+      
+      br(),
+      
+      p("Campus shutdowns, disrupted routines, and increased stress during the pandemic likely contributed to this surge in drug abuse.")
+    )
+  )
+)
+
+# Define content for the fourth page
+page_four <- tabPanel(
+  "Solutions", 
+  titlePanel("Solutions"), 
+  h3("Addressing Drug Abuse Challenges"),
+  p("The challenges of drug abuse among college students have intensified during the pandemic."),
+  
+  br(),
+  
+  p("Implementing effective solutions such as increased access to counseling services, targeted educational programs, 
+    and fostering a supportive campus environment can mitigate the rising trend of drug abuse. Additionally, 
+    providing resources and support tailored to vulnerable communities is imperative."),
+  
+  br(),
+  
+  p("While there is no one-size-fits-all solution, targeted interventions and increased support systems 
+    can make a substantial difference in curbing drug abuse among college students.")
+)
+
+# Define content for the fifth page
+page_five <- tabPanel(
+  "Overview", 
+  titlePanel("Overview"), 
+  h3("Why Focus on Drug Abuse?"),
+  p("The prevalence of drug abuse among college students poses significant challenges, impacting academic performance, 
+    mental and physical health, and future prospects."),
+  
+  br(),
+  
+  h3("Taking Action"),
+  p("As part of the University of Washington, acknowledging and addressing this issue is crucial. By implementing comprehensive 
+    strategies and support systems, we can create a healthier and more conducive environment for our student community.")
+)
+
+# Pass each page to a multi-page layout using `navbarPage`
+ui <- navbarPage(
+  "Drug Abuse Among College Students", 
+  page_one,         
+  page_two,         
+  page_three,       
+  page_four,       
+  page_five        
+)
+
+server <- function(input, output, session) {
+  # Your plot rendering functions using the drug abuse data would go here
+}
+
+shinyApp(ui, server)
