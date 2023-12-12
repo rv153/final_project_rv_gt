@@ -127,7 +127,7 @@ ui <- navbarPage(
 server <- function(input, output, session) {
   output$female_plot <- renderPlot({
     # Your plot code for gender distribution
-    ggplot(drug_abuse_data, aes(x = Age_Group, y = Female_Percentage)) +
+    ggplot(UnifiedData, aes(x = Age_Group, y = Female_Percentage)) +
       geom_bar(stat = "identity", fill = "skyblue", width = 0.5) +
       labs(title = "Percentage of Females Involved in Drug Abuse by Age",
            x = "Age Group",
