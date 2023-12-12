@@ -126,7 +126,7 @@ ui <- navbarPage(
 
 server <- function(input, output, session) {
   output$female_plot <- renderPlot({
-    ggplot(df, aes(x = Age_Group, y = Female_Percentage)) +
+    ggplot(df, aes(x = Ages, y = Female)) +
       geom_bar(stat = "identity", fill = "skyblue", width = 0.5) +
       labs(title = "Percentage of Females Involved in Drug Abuse by Age",
            x = "Age Group",
@@ -135,7 +135,7 @@ server <- function(input, output, session) {
   })
 
   output$male_plot <- renderPlot({
-    ggplot(df, aes(x = Age_Group, y = Male_Percentage)) +
+    ggplot(df, aes(x = Ages, y = Male)) +
       geom_bar(stat = "identity", fill = "lightgreen", width = 0.5) +
       labs(title = "Percentage of Males Involved in Drug Abuse by Age",
            x = "Age Group",
