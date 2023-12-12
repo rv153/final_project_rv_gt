@@ -42,9 +42,14 @@ plotlyOutput(outputId = "female_plot"),  # First plot
       
       br(),
       
-      p("The bar plot on the left showcases drug abuse rates across different age groups and genders. For example, 
-        we observe higher rates among younger individuals aged 18-25 and among males (at 30% and 28%, respectively), 
-        compared to lower rates among older individuals aged 26-35 and females (at 18% and 20%, respectively)."),
+      p("The data reveals intriguing patterns in female participation across various age groups and drug types.
+        Among females aged 17-19, marijuana shows the highest involvement at 52.20%, while opioids demonstrate a
+        substantial participation of 30%. In the 18-20 age bracket, engagement in study drugs is notably lower, standing
+        at 11.20%. As the age range extends to 18-22, alcohol exhibits relatively higher participation among females
+        at 44.50%. In the 21-25 age group, females also show involvement in cigarette use, with a participation rate of
+        23.67%. Across these age brackets, there's a fluctuating trend in female engagement with different substances,
+        suggesting varying propensities for substance involvement as individuals progress through different stages of late
+        adolescence and early adulthood.."),
       
       br(),
       
@@ -68,9 +73,12 @@ page_three <- tabPanel(
       
       br(),
       
-      p("An analysis from 2019 to 2021 reveals a significant change in the abuse rates of specific drug types among college-age individuals. 
-        For instance, stimulants and opioids witnessed a marked increase from 20% to 60%, showing a substantial rise compared 
-        to the abuse rates of other drug types."),
+      p("The data showcases diverse trends in student participation concerning different drug types.
+        Marijuana and alcohol exhibit substantial student engagement, with rates of 10% and 45.6%, respectively.
+        Cigarette usage reflects a moderate participation rate at 37.69%. Opioids and study drugs also draw
+        attention, with 12.4% and 63.4% participation rates, respectively. This spectrum of participation indicates
+        varying levels of involvement across different drug types among students, suggesting distinct preferences and
+        degrees of interaction with these substances."),
       
       br(),
       
